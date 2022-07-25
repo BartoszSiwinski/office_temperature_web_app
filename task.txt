@@ -1,0 +1,34 @@
+The scenario
+
+You are working for a company building a new product.
+It is a tool to process information from temperature sensors around Antwerp, Belgium.
+All over the city, your customers have set up smart digital thermometers to measure how hot their offices
+are. There are 1000 sensors sending data to your server.
+The thermometers check the temperature and send data every 1 minute.
+These thermometers are not as smart as they could be. Sometimes they send duplicate data, sometimes
+they do not send on time - with old data arriving up to 24 hours late.
+Some admin users check in from time to time and want to know if it has been too hot in their offices today.
+
+
+The task
+
+Create a python application (or at least partly using python) that can do two things:
+
+● Receive data from an HTTP POST
+○ Example request body: {“siteId”:”abc123”, “orgId”:”alphacorp”, “temperature”:27.3, “timestamp”: 1658739178}
+
+● Return a “too hot or not” response to an HTTP GET request
+○ Example url: yourapp/v1/admin/toohotornot?siteId=abc123
+
+Bonus
+
+Your application doesn’t have to handle these scenarios, but please include a short answer to them in your
+response:
+● The admin users accessing the ‘toohotornot’ endpoint are busy CEOs, they don’t want to wait more
+than 0.5 seconds for the response. How do you handle this?
+
+● Your business expands to the US and adds 1000 new customers, each with 1 sensor per office. How
+do you handle the expanding scale?
+○ What do you do differently when it is 1 million new customers?
+
+● The US customers are all sending their temperature data in fahrenheit. How do you handle that?
