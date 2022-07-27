@@ -9,12 +9,12 @@ LOCALHOST_URL = f'{URL_BASE}:{PORT}'
 class Handler(BaseHTTPRequestHandler):
 
     def _parse_path(self):
-        service, params_string = self.path.split('?')
-        params = {
+        self.service, params_string = self.path.split('?')
+        self.request_params = {
             param.split('=')[0]: param.split('=')[1]
             for param in params_string.split('&')
         }
-        print(params)
+        print(self.request_params)
 
     def _debugging_method(self):
         # TODO: Delete after delivery to main.
@@ -23,11 +23,13 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self._debugging_method()
         self._parse_path()
+        if not self.service.endswith('hotornot'):
+            self.send_response_only(HTTPStatus.NOT_FOUND)
         self.send_response(HTTPStatus.OK)
-        self.send_header('Content-type','text/html')
+        self.send_header('Content-type', 'text/html')
         self.end_headers()
 
-        message = "Too hot"
+        message = "Too hot" if is_too_hot() else "It's not too hot."
         self.wfile.write(bytes(message, "utf8"))
 
     def do_POST(self):
