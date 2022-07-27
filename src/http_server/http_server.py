@@ -17,7 +17,7 @@ class Handler(BaseHTTPRequestHandler):
         print(params)
 
     def _debugging_method(self):
-        # TODO: Delete later
+        # TODO: Delete after delivery to main.
         print(self.path)
 
     def do_GET(self):
