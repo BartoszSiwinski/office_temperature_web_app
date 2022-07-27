@@ -2,7 +2,7 @@ import requests
 
 from src.http_server.http_server import LOCALHOST_URL
 
-post_office_temperature_url = f'http://{LOCALHOST_URL}/'
+post_office_temperature_url = f'http://{LOCALHOST_URL}/post-office-temp/'
 
 incoming_post_parms = {
     'siteId': 'abc123',
