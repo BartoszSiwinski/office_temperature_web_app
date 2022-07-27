@@ -27,8 +27,17 @@ response:
 ● The admin users accessing the ‘toohotornot’ endpoint are busy CEOs, they don’t want to wait more
 than 0.5 seconds for the response. How do you handle this?
 
+Answer:
+* Add machines
+* Process data on POSTing, so there is a separate table, or column with ready answer whether it's been hot or not (criteria for the too hot or not service are not described, so hard to say if there should be some table updated every minute that reads last 24h window or smth like this)
+* Keep in some form of fast access only last readings of the sensors and update periodically (might be less frequently then the sensors provide)
+
 ● Your business expands to the US and adds 1000 new customers, each with 1 sensor per office. How
 do you handle the expanding scale?
+* Add machines
+* Load balancing
 ○ What do you do differently when it is 1 million new customers?
 
 ● The US customers are all sending their temperature data in fahrenheit. How do you handle that?
+* Process data on insert
+* alternatively we could store the unit in a separate column, but this takes space, so would make sense only if there is a consumer of the raw data (not just too-hot-or-not) that wants to read historic data.
